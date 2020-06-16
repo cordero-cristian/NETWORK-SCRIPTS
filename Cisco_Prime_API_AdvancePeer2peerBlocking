@@ -17,7 +17,7 @@ def apiWlanProfile():
     controllerip = input("Please enter the controller ip")
 
     response = requests.get('https://'+ controllerip + '/webacs/api/v1/data/WlanProfiles.json', verify=False, auth=(username, password))
-    response = json.loads(response.content.decode()
+    response = json.loads(response.content.decode())
     listOfControllers = response['queryResponse']['entityId']
     
     equestedInfoTemp=list()
