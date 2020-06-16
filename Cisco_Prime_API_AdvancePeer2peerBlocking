@@ -16,21 +16,12 @@ def apiWlanProfile():
     password = input("Please enter api password")
     controllerip = input("Please enter the controller ip")
 
-    def apiWlanProfileList(controllerip,username,password):
-    
-            response = requests.get('https://'+ controllerip + '/webacs/api/v1/data/WlanProfiles.json', verify=False, auth=(username, password))
-            response = json.loads(response.content.decode())
-            
-            return response
-            
-    response = apiWlanProfileList(controllerip,username,password)
-    count = int(response['queryResponse']['@last'])
+    response = requests.get('https://'+ controllerip + '/webacs/api/v1/data/WlanProfiles.json', verify=False, auth=(username, password))
+    response = json.loads(response.content.decode()
     listOfControllers = response['queryResponse']['entityId']
     
-    if count >= 0: 
-
-        requestedInfoTemp=list()
-    
+    equestedInfoTemp=list()
+        
         for controller in listOfControllers:
             
             controllerUrl = str(controller['@url'])
@@ -47,7 +38,6 @@ def apiWlanProfile():
             peerBlockingSetting = r['queryResponse']['entity'][0]['wlanProfilesDTO']['advancedPeerToPeerBlocking']
             requestedInfoTemp = [WlanProfile,ssid,peerBlockingSetting]
             requestedInfo.append(requestedInfoTemp)
-            count = count - 1
             print(requestedInfo)
        
     with open(r'#file_path_for_results_here_', 'w') as file:
