@@ -20,7 +20,7 @@ def apiWlanProfile():
     response = json.loads(response.content.decode())
     listOfControllers = response['queryResponse']['entityId']
     
-    equestedInfoTemp=list()
+    requestedInfoTemp=list()
         
         for controller in listOfControllers:
             
